@@ -3,8 +3,7 @@ import { ApiError } from "../utils/ApiError.js"
 import { Emp } from "../models/employee.model.js"
 import { uploadOnCloudinary } from "../utils/cloudinary.js"
 import { ApiResponse } from "../utils/ApiResponse.js";
-import jwt from "jsonwebtoken"
-import mongoose from "mongoose";
+import nodemailer from "nodemailer";
 // const path = require('path');
 import path from "path"
 import moment from "moment";
@@ -377,6 +376,36 @@ const updateProfileImage = asyncHandler(async (req, res) => {
         )
 })
 
+
+
+const sendMail = async (req, res) => {
+    let testAccount = await nodemailer.createTestAccount();
+  
+    // connect with the smtp
+    let transporter = await nodemailer.createTransport({
+      host: "smtp.ethereal.email",
+      port: 587,
+      auth: {
+        user: "Dhaval2",
+        pass: "dlrl bkoc nxnj pkzq",
+      },
+    });
+  
+    let info = await transporter.sendMail({
+      from: '"Dhaval Gondaliya" <bhavnagondaliya77@gmail.com>', // sender address
+      to: "dhavalgondaliya2727@gmail.com", // list of receivers
+      subject: "Hello", // Subject line
+      text: "Hello Dhaval", // plain text body
+      html: "<b>Email sent </b>", // html body
+    });
+  
+    return res
+    .status(200)
+    .json(
+        new ApiResponse(200, info, "Email sent successfully")
+    )
+  };
+
 export {
     registerEmp,
     loginUser,
@@ -386,6 +415,7 @@ export {
     getCurrentEmp,
     onBirthdayToday,
     updateProfileImage,
-    updateAccountDetails
+    updateAccountDetails,
+    sendMail
     
 }

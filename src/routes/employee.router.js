@@ -9,7 +9,8 @@ import {
     getCurrentEmp, 
     onBirthdayToday,
     updateProfileImage,
-    updateAccountDetails
+    updateAccountDetails,
+    sendMail
 } from "../controllers/employee.controller.js";
 import {upload} from "../middlewares/multer.middleware.js"
 import { verifyJWT } from "../middlewares/auth.middleware.js";
@@ -28,6 +29,7 @@ router.route("/emp/register").post(
     registerEmp
     )
 router.route("/emp/login").get(loginUser)
+router.route("/emp/sendMail").get(sendMail)
 router.route("/emp/logout").post(verifyJWT,  logoutUser)
 router.route("/emp/current-emp").get(verifyJWT, getCurrentEmp)
 router.route("/emp/birthday").get(verifyJWT, onBirthdayToday)

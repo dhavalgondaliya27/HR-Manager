@@ -20,5 +20,4 @@ import Attendance from "./routes/attendance.router.js"
 app.use("/api/v1", EmpRouter)
 app.use("/api/v2",Leave)
 app.use("/api/v3",Attendance)
-// http://localhost:8000/api/v1/users/register
 export { app }
