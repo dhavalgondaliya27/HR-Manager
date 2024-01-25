@@ -386,8 +386,8 @@ const sendMail = async (req, res) => {
       host: "smtp.ethereal.email",
       port: 587,
       auth: {
-        user: "Dhaval2",
-        pass: "dlrl bkoc nxnj pkzq",
+        user: 'johnathon.schuppe@ethereal.email',
+        pass: 'Ag9UySw5ZSVN11YEQD'
       },
     });
   
@@ -398,6 +398,10 @@ const sendMail = async (req, res) => {
       text: "Hello Dhaval", // plain text body
       html: "<b>Email sent </b>", // html body
     });
+
+    if (!info) {
+        throw new ApiError(400, "Error while sending a email")
+    }
   
     return res
     .status(200)
